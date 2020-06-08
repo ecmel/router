@@ -12,7 +12,7 @@ import org.junit.Test;
 /**
  * Created by mark on 13/06/2017.
  */
-public class ExpressRouterTest
+public class ExpressRouteTest
 {
     private static final Map<String, String[]> allPathDefinitions;
 
