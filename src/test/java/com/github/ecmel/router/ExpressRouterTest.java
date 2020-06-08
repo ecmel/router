@@ -254,8 +254,8 @@ public class ExpressRouterTest
         System.out.println(parametersFromPath);
 
         assertTrue(parametersFromPath.size() == 2);
-        asertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
-        sassertTrue(parametersFromPath.get("date") == null);
+        assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
+        assertTrue(parametersFromPath.get("date") == null);
     }
 
     @Test
@@ -333,7 +333,7 @@ public class ExpressRouterTest
                 {
                     System.out.println(route);
                     System.out.println(test);
-                    Assert.assertTrue(false);
+                    assertTrue(false);
                 }
             }
         }
