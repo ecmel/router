@@ -1,21 +1,12 @@
 package com.github.ecmel.router;
 
-import java.io.IOException;
 import java.util.ArrayDeque;
-import javax.servlet.http.HttpServletRequest;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.websocket.servlet.WebSocketCreator;
 
 public class Router extends HandlerCollection
 {
     private ArrayDeque<String> context = new ArrayDeque<>();
-
-    public String getBody(HttpServletRequest req) throws IOException
-    {
-        StringBuilder builder = new StringBuilder();
-        req.getReader().lines().forEach((e) -> builder.append(e));
-        return builder.toString();
-    }
 
     private String getContext(String path)
     {
@@ -57,7 +48,7 @@ public class Router extends HandlerCollection
 
     public Router all(String path, Route route)
     {
-        addHandler(new RouteHandler("ALL", getContext(path), route, false));
+        addHandler(new RouteHandler("ALL", getContext(path), route));
         return this;
     }
 
@@ -68,7 +59,7 @@ public class Router extends HandlerCollection
 
     public Router get(String path, Route route)
     {
-        addHandler(new RouteHandler("GET", getContext(path), route, true));
+        addHandler(new RouteHandler("GET", getContext(path), route));
         return this;
     }
 
@@ -79,7 +70,7 @@ public class Router extends HandlerCollection
 
     public Router put(String path, Route route)
     {
-        addHandler(new RouteHandler("PUT", getContext(path), route, true));
+        addHandler(new RouteHandler("PUT", getContext(path), route));
         return this;
     }
 
@@ -90,7 +81,7 @@ public class Router extends HandlerCollection
 
     public Router post(String path, Route route)
     {
-        addHandler(new RouteHandler("POST", getContext(path), route, true));
+        addHandler(new RouteHandler("POST", getContext(path), route));
         return this;
     }
 
@@ -101,7 +92,7 @@ public class Router extends HandlerCollection
 
     public Router delete(String path, Route route)
     {
-        addHandler(new RouteHandler("DELETE", getContext(path), route, true));
+        addHandler(new RouteHandler("DELETE", getContext(path), route));
         return this;
     }
 }

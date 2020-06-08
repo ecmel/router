@@ -35,7 +35,6 @@ class RouteWebSocketHandler extends WebSocketHandler
     {
         if (path.matches(target))
         {
-            path.getParametersFromPath(target).forEach((k, v) -> request.setAttribute(k, v));
             super.handle(target, baseRequest, request, response);
         }
     }

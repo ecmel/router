@@ -12,32 +12,12 @@ class RouteHandler extends AbstractHandler
     private final String method;
     private final ExpressRoute path;
     private final Route route;
-    private final boolean handled;
 
-    public RouteHandler(String method, String path, Route route, boolean handled)
+    public RouteHandler(String method, String path, Route route)
     {
         this.method = method;
         this.path = new ExpressRoute(path);
         this.route = route;
-        this.handled = handled;
-    }
-
-    private void handle(
-        HttpServletRequest request,
-        HttpServletResponse response) throws IOException, ServletException
-    {
-        try
-        {
-            route.handle(request, response);
-        }
-        catch (IOException | ServletException e)
-        {
-            throw e;
-        }
-        catch (Exception e)
-        {
-            throw new ServletException(e);
-        }
     }
 
     @Override
@@ -51,9 +31,23 @@ class RouteHandler extends AbstractHandler
             || method.equals(baseRequest.getMethod()))
             && path.matches(target))
         {
-            path.getParametersFromPath(target).forEach((k, v) -> request.setAttribute(k, v));
-            handle(request, response);
-            baseRequest.setHandled(handled);
+            try
+            {
+                HttpRequest req = new HttpRequest(request, path.getParametersFromPath(target));
+                HttpResponse res = new HttpResponse(response);
+
+                route.handle(req, res);
+
+                baseRequest.setHandled(req.isHandled());
+            }
+            catch (IOException | ServletException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw new ServletException(e);
+            }
         }
     }
 }
