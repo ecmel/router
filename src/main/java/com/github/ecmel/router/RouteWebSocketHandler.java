@@ -11,12 +11,12 @@ import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 
 public class RouteWebSocketHandler extends WebSocketHandler
 {
-    private final String path;
+    private final ExpressRoute path;
     private final WebSocketCreator creator;
 
     public RouteWebSocketHandler(String path, WebSocketCreator creator)
     {
-        this.path = path;
+        this.path = new ExpressRoute(path);
         this.creator = creator;
     }
 
@@ -33,8 +33,9 @@ public class RouteWebSocketHandler extends WebSocketHandler
         HttpServletRequest request,
         HttpServletResponse response) throws IOException, ServletException
     {
-        if (path.equals(target))
+        if (path.matches(target))
         {
+            path.getParametersFromPath(target).forEach((k, v) -> request.setAttribute(k, v));
             super.handle(target, baseRequest, request, response);
         }
     }
