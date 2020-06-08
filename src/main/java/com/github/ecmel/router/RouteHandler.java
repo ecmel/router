@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 
-public class RouteHandler extends AbstractHandler
+class RouteHandler extends AbstractHandler
 {
     private final String method;
     private final ExpressRoute path;

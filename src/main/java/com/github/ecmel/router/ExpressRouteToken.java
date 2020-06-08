@@ -3,7 +3,7 @@ package com.github.ecmel.router;
 /**
  * Created by mark on 13/06/2017.
  */
-public class ExpressRouteToken
+class ExpressRouteToken
 {
     private final String name;
     private final String prefix;

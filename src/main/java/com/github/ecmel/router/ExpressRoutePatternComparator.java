@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * Created by mark on 14/06/2017.
  */
-public class ExpressRoutePatternComparator implements Comparator<ExpressRoute>
+class ExpressRoutePatternComparator implements Comparator<ExpressRoute>
 {
     private final String path;
 

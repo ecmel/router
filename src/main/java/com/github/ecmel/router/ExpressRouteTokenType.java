@@ -3,7 +3,8 @@ package com.github.ecmel.router;
 /**
  * Created by mark on 13/06/2017.
  */
-public enum ExpressRouteTokenType
+enum ExpressRouteTokenType
 {
-    PATH_FRAGMENT, PARAMETRIC
+    PATH_FRAGMENT, 
+    PARAMETRIC
 }

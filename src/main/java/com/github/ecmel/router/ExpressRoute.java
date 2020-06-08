@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * Created by mark on 13/06/2017.
  */
-public class ExpressRoute
+class ExpressRoute
 {
     private static final Pattern PATH_REGEXP = Pattern.compile(String.join("|", (CharSequence[]) new String[] {
                 "(\\\\.)",

@@ -1,13 +1,12 @@
 package com.github.ecmel.router;
 
+import static org.junit.Assert.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -83,7 +82,7 @@ public class ExpressRouterTest
 
         System.out.println(route);
 
-        Assert.assertTrue(route.matches(PATH));
+        assertTrue(route.matches(PATH));
     }
 
     @Test
@@ -96,7 +95,7 @@ public class ExpressRouterTest
 
         System.out.println(route);
 
-        Assert.assertTrue(route.matches(PATH));
+        assertTrue(route.matches(PATH));
     }
 
     @Test
@@ -109,7 +108,7 @@ public class ExpressRouterTest
 
         System.out.println(route);
 
-        Assert.assertTrue(route.matches(PATH));
+        assertTrue(route.matches(PATH));
     }
 
     @Test
@@ -125,8 +124,8 @@ public class ExpressRouterTest
 
         ExpressRoutePatternComparator foo = new ExpressRoutePatternComparator(PATH);
 
-        Assert.assertTrue(ca.matches(PATH));
-        Assert.assertTrue(other.matches(PATH));
+        assertTrue(ca.matches(PATH));
+        assertTrue(other.matches(PATH));
 
         List<ExpressRoute> routes = Arrays.asList(ca, other);
 
@@ -136,7 +135,7 @@ public class ExpressRouterTest
 
         System.out.println(routes.stream().map(ExpressRoute::getPathDefinition).collect(Collectors.toList()));
 
-        Assert.assertTrue(foo.compare(ca, other) > 0);
+        assertTrue(foo.compare(ca, other) > 0);
     }
 
     @Test
@@ -149,14 +148,14 @@ public class ExpressRouterTest
 
         System.out.println(route);
 
-        Assert.assertTrue(route.matches(PATH));
+        assertTrue(route.matches(PATH));
 
         final Map<String, String> parametersFromPath = route.getParametersFromPath(PATH);
         System.out.println(parametersFromPath);
 
-        Assert.assertTrue(parametersFromPath.size() == 2);
-        Assert.assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
-        Assert.assertTrue(parametersFromPath.get("straddleSlug").equals("sluggy"));
+        assertTrue(parametersFromPath.size() == 2);
+        assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
+        assertTrue(parametersFromPath.get("straddleSlug").equals("sluggy"));
     }
 
     @Test
@@ -169,14 +168,14 @@ public class ExpressRouterTest
 
         System.out.println(route);
 
-        Assert.assertTrue(route.matches(PATH));
+        assertTrue(route.matches(PATH));
 
         final Map<String, String> parametersFromPath = route.getParametersFromPath(PATH);
         System.out.println(parametersFromPath);
 
-        Assert.assertTrue(parametersFromPath.size() == 2);
-        Assert.assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
-        Assert.assertTrue(parametersFromPath.get("straddleSlug").equals("sluggy"));
+        assertTrue(parametersFromPath.size() == 2);
+        assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
+        assertTrue(parametersFromPath.get("straddleSlug").equals("sluggy"));
     }
 
     @Test
@@ -189,14 +188,14 @@ public class ExpressRouterTest
 
         System.out.println(route);
 
-        Assert.assertTrue(route.matches(PATH));
+        assertTrue(route.matches(PATH));
 
         final Map<String, String> parametersFromPath = route.getParametersFromPath(PATH);
         System.out.println(parametersFromPath);
 
-        Assert.assertTrue(parametersFromPath.size() == 2);
-        Assert.assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
-        Assert.assertTrue(parametersFromPath.get("date").equals("07-06-2017"));
+        assertTrue(parametersFromPath.size() == 2);
+        assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
+        assertTrue(parametersFromPath.get("date").equals("07-06-2017"));
     }
 
     @Test
@@ -209,14 +208,14 @@ public class ExpressRouterTest
 
         System.out.println(route);
 
-        Assert.assertTrue(route.matches(PATH));
+        assertTrue(route.matches(PATH));
 
         final Map<String, String> parametersFromPath = route.getParametersFromPath(PATH);
         System.out.println(parametersFromPath);
 
-        Assert.assertTrue(parametersFromPath.size() == 2);
-        Assert.assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
-        Assert.assertTrue(parametersFromPath.get("date").equals("07-06-2017"));
+        assertTrue(parametersFromPath.size() == 2);
+        assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
+        assertTrue(parametersFromPath.get("date").equals("07-06-2017"));
     }
 
     @Test
@@ -229,14 +228,14 @@ public class ExpressRouterTest
 
         System.out.println(route);
 
-        Assert.assertTrue(route.matches(PATH));
+        assertTrue(route.matches(PATH));
 
         final Map<String, String> parametersFromPath = route.getParametersFromPath(PATH);
         System.out.println(parametersFromPath);
 
-        Assert.assertTrue(parametersFromPath.size() == 2);
-        Assert.assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
-        Assert.assertTrue(parametersFromPath.get("date") == null);
+        assertTrue(parametersFromPath.size() == 2);
+        assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
+        assertTrue(parametersFromPath.get("date") == null);
     }
 
     @Test
@@ -249,14 +248,14 @@ public class ExpressRouterTest
 
         System.out.println(route);
 
-        Assert.assertTrue(route.matches(PATH));
+        assertTrue(route.matches(PATH));
 
         final Map<String, String> parametersFromPath = route.getParametersFromPath(PATH);
         System.out.println(parametersFromPath);
 
-        Assert.assertTrue(parametersFromPath.size() == 2);
-        Assert.assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
-        Assert.assertTrue(parametersFromPath.get("date") == null);
+        assertTrue(parametersFromPath.size() == 2);
+        asertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
+        sassertTrue(parametersFromPath.get("date") == null);
     }
 
     @Test
@@ -267,14 +266,14 @@ public class ExpressRouterTest
 
         ExpressRoute route = new ExpressRoute(pathDefinition);
 
-        Assert.assertTrue(route.matches(PATH));
+        assertTrue(route.matches(PATH));
 
         final Map<String, String> parametersFromPath = route.getParametersFromPath(PATH);
         System.out.println(parametersFromPath);
 
-        Assert.assertTrue(parametersFromPath.size() == 2);
-        Assert.assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
-        Assert.assertTrue(parametersFromPath.get("straddleSlug") == null);
+        assertTrue(parametersFromPath.size() == 2);
+        assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
+        assertTrue(parametersFromPath.get("straddleSlug") == null);
     }
 
     @Test
@@ -287,14 +286,14 @@ public class ExpressRouterTest
 
         System.out.println(route);
 
-        Assert.assertTrue(route.matches(PATH));
+        assertTrue(route.matches(PATH));
 
         final Map<String, String> parametersFromPath = route.getParametersFromPath(PATH);
         System.out.println(parametersFromPath);
 
-        Assert.assertTrue(parametersFromPath.size() == 2);
-        Assert.assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
-        Assert.assertTrue(parametersFromPath.get("straddleSlug") == null);
+        assertTrue(parametersFromPath.size() == 2);
+        assertTrue(parametersFromPath.get("commoditySlug").equals("porkbelly"));
+        assertTrue(parametersFromPath.get("straddleSlug") == null);
     }
 
     @Test

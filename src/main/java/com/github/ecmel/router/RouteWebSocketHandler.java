@@ -9,7 +9,7 @@ import org.eclipse.jetty.websocket.server.WebSocketHandler;
 import org.eclipse.jetty.websocket.servlet.WebSocketCreator;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 
-public class RouteWebSocketHandler extends WebSocketHandler
+class RouteWebSocketHandler extends WebSocketHandler
 {
     private final ExpressRoute path;
     private final WebSocketCreator creator;

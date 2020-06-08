@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * Created by mark on 14/06/2017.
  */
-public class ExpressRoutePatternInfo
+class ExpressRoutePatternInfo
 {
     private final String pattern;
     private int uriVars;
