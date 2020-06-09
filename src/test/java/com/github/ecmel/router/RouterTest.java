@@ -132,6 +132,35 @@ public class RouterTest
     }
 
     @Test
+    public void shouldNormalizePath() throws Exception
+    {
+        router.get("//get///me/now", (req, res) -> res.getWriter().print("get"));
+
+        ContentResponse res = client
+            .newRequest(uri)
+            .method(HttpMethod.GET)
+            .path("/get/me/now")
+            .send();
+
+        assertEquals(200, res.getStatus());
+        assertEquals("get", res.getContentAsString());
+    }
+
+    @Test
+    public void shouldRespondNotFound() throws Exception
+    {
+        router.get("/get", (req, res) -> res.getWriter().print("get"));
+
+        ContentResponse res = client
+            .newRequest(uri)
+            .method(HttpMethod.GET)
+            .path("/none")
+            .send();
+
+        assertEquals(404, res.getStatus());
+    }
+
+    @Test
     public void shouldHandleManyRoutes() throws Exception
     {
         for (int i = 0; i < 1000; i++)
