@@ -104,7 +104,8 @@ public class RouterTest
                 .all("/*", (req, res) -> res.getWriter().print("1"))
                 .get("/get", (req, res) -> res.getWriter().print("2"))
                 .get("/get", (req, res) -> res.getWriter().print("3"))
-                .all("/*", (req, res) -> res.getWriter().print("4")));
+                .all("/*", (req, res) -> res.getWriter().print("4")))
+            .get("/*", (req, res) -> res.getWriter().print("5"));
 
         ContentResponse res = client
             .newRequest(uri)
@@ -113,7 +114,7 @@ public class RouterTest
             .send();
 
         assertEquals(200, res.getStatus());
-        assertEquals("1234", res.getContentAsString());
+        assertEquals("12345", res.getContentAsString());
     }
 
     @Test
