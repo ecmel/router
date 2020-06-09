@@ -169,13 +169,48 @@ public class RouterTest
             router.get("/get/" + i, (req, res) -> res.getWriter().print("get"));
         }
 
-        ContentResponse res = client
-            .newRequest(uri)
-            .method(HttpMethod.GET)
-            .path("/get/999")
-            .send();
+        ContentResponse res = null;
 
-        assertEquals(200, res.getStatus());
-        assertEquals("get", res.getContentAsString());
+        for (int i = 0; i < 1000; i++)
+        {
+            res = client
+                .newRequest(uri)
+                .method(HttpMethod.GET)
+                .path("/get/" + i)
+                .send();
+
+            assertEquals(200, res.getStatus());
+            assertEquals("get", res.getContentAsString());
+        }
+
+        long startTime = System.nanoTime();
+
+        for (int i = 0; i < 100; i++)
+        {
+            res = client
+                .newRequest(uri)
+                .method(HttpMethod.GET)
+                .path("/get/0")
+                .send();
+        }
+
+        long elapsedTime = System.nanoTime() - startTime;
+
+        System.out.format("Get first route: %d ms %n", elapsedTime / 1000000);
+
+        startTime = System.nanoTime();
+
+        for (int i = 0; i < 100; i++)
+        {
+            res = client
+                .newRequest(uri)
+                .method(HttpMethod.GET)
+                .path("/get/999")
+                .send();
+        }
+
+        elapsedTime = System.nanoTime() - startTime;
+
+        System.out.format("Get last route : %d ms %n", elapsedTime / 1000000);
     }
 }
