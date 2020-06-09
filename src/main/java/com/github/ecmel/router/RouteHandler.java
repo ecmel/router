@@ -27,18 +27,18 @@ class RouteHandler extends AbstractHandler
         HttpServletRequest request,
         HttpServletResponse response) throws IOException, ServletException
     {
-        if ((method.equals("ALL")
-            || method.equals(baseRequest.getMethod()))
-            && path.matches(target))
+        boolean handled = method.equals(baseRequest.getMethod());
+
+        if ((handled || method.equals("ALL")) && path.matches(target))
         {
             try
             {
-                HttpRequest req = new HttpRequest(request, path.getParametersFromPath(target));
-                HttpResponse res = new HttpResponse(response);
+                HttpRequest req = (HttpRequest) request;
+                HttpResponse res = (HttpResponse) response;
 
+                req.setPathParameters(path.getParametersFromPath(target));
                 route.handle(req, res);
-
-                baseRequest.setHandled(req.isHandled());
+                baseRequest.setHandled(handled);
             }
             catch (IOException | ServletException e)
             {

@@ -1,6 +1,11 @@
 package com.github.ecmel.router;
 
+import java.io.IOException;
 import java.util.ArrayDeque;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.websocket.servlet.WebSocketCreator;
 
@@ -94,5 +99,15 @@ public class Router extends HandlerCollection
     {
         addHandler(new RouteHandler("DELETE", getContext(path), route));
         return this;
+    }
+
+    @Override
+    public void handle(
+        String target,
+        Request baseRequest,
+        HttpServletRequest request,
+        HttpServletResponse response) throws IOException, ServletException
+    {
+        super.handle(target, baseRequest, new HttpRequest(request), new HttpResponse(response));
     }
 }

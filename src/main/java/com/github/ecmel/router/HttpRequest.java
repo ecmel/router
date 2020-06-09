@@ -26,29 +26,21 @@ import javax.servlet.http.Part;
 public class HttpRequest implements HttpServletRequest
 {
     private final HttpServletRequest delegate;
-    private final Map<String, String> parameters;
-    private boolean handled;
+    private Map<String, String> pathParameters;
 
-    public HttpRequest(HttpServletRequest delegate, Map<String, String> parameters)
+    public HttpRequest(HttpServletRequest delegate)
     {
         this.delegate = delegate;
-        this.parameters = parameters;
-        this.handled = false;
     }
 
-    public void setHandled(boolean handled)
+    void setPathParameters(Map<String, String> pathParameters)
     {
-        this.handled = handled;
-    }
-
-    public boolean isHandled()
-    {
-        return handled;
+        this.pathParameters = pathParameters;
     }
 
     public String getPathParameter(String name)
     {
-        return parameters.get(name);
+        return pathParameters.get(name);
     }
 
     public String getContentAsString() throws IOException
