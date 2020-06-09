@@ -38,7 +38,11 @@ class RouteHandler extends AbstractHandler
 
                 req.setPathParameters(path.getParametersFromPath(target));
                 route.handle(req, res);
-                baseRequest.setHandled(handled);
+
+                if (handled && !baseRequest.isHandled())
+                {
+                    baseRequest.setHandled(true);
+                }
             }
             catch (IOException | ServletException e)
             {
