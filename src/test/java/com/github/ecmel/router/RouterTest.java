@@ -1,8 +1,6 @@
 package com.github.ecmel.router;
 
 import static org.junit.Assert.*;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.client.api.ContentResponse;
 import org.eclipse.jetty.http.HttpMethod;
@@ -36,28 +34,6 @@ public class RouterTest
     {
         client.stop();
         server.stop();
-    }
-
-    @Test
-    public void shouldHandleManyRequests() throws Exception
-    {
-        router.get("/get", (req, res) -> res.getWriter().print("get"));
-
-        int count = 8;
-        CountDownLatch latch = new CountDownLatch(count);
-
-        for (int i = 0; i < count; i++)
-        {
-            client
-                .newRequest(uri)
-                .method(HttpMethod.GET)
-                .path("/get")
-                .send((result) -> latch.countDown());
-        }
-
-        latch.await(5, TimeUnit.SECONDS);
-
-        assertEquals(0, latch.getCount());
     }
 
     @Test
