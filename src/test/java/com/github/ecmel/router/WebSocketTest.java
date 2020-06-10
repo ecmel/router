@@ -30,7 +30,7 @@ public class WebSocketTest
         server = new Server(8080);
         client = new WebSocketClient();
 
-        router.use((req, res) -> new ServerSocket());
+        router.socket((req, res) -> new ServerSocket());
 
         server.setHandler(router);
 
@@ -92,6 +92,7 @@ public class WebSocketTest
     {
         ClientSocket socket = new ClientSocket();
         client.connect(socket, new URI(uri));
+
         assertEquals("Hello", socket.get());
     }
 }

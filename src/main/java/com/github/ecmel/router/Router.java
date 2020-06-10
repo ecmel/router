@@ -22,17 +22,6 @@ public class Router extends HandlerCollection
         return builder.toString().replaceAll("/+", "/");
     }
 
-    public Router use(WebSocketCreator creator)
-    {
-        return use("", creator);
-    }
-
-    public Router use(String path, WebSocketCreator creator)
-    {
-        addHandler(new RouteWebSocketHandler(getContext(path), creator));
-        return this;
-    }
-
     public Router use(RouteGroup group)
     {
         return use("", group);
@@ -98,6 +87,17 @@ public class Router extends HandlerCollection
     public Router delete(String path, Route route)
     {
         addHandler(new RouteHandler("DELETE", getContext(path), route));
+        return this;
+    }
+
+    public Router socket(WebSocketCreator creator)
+    {
+        return socket("", creator);
+    }
+
+    public Router socket(String path, WebSocketCreator creator)
+    {
+        addHandler(new RouteWebSocketHandler(getContext(path), creator));
         return this;
     }
 
