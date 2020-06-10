@@ -46,7 +46,7 @@ public class RouterTest
         router.get("/get", (req, res) -> res.getWriter().print("get"));
 
         int count = 10;
-        CountDownLatch latch = new CountDownLatch(count - 1);
+        CountDownLatch latch = new CountDownLatch(count);
 
         for (int i = 0; i < count; i++)
         {
