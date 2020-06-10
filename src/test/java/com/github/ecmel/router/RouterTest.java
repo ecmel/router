@@ -1,8 +1,12 @@
 package com.github.ecmel.router;
 
 import static org.junit.Assert.*;
+import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.client.api.ContentResponse;
+import org.eclipse.jetty.client.api.Result;
 import org.eclipse.jetty.http.HttpMethod;
 import org.eclipse.jetty.server.Server;
 import org.junit.After;
@@ -34,6 +38,21 @@ public class RouterTest
     {
         client.stop();
         server.stop();
+    }
+
+    @Test
+    public void shouldHandleManyRequests() throws Exception
+    {
+        router.get("/get", (req, res) -> res.getWriter().print("get"));
+
+        for (int i = 0; i < 100; i++)
+        {
+            client
+                .newRequest(uri)
+                .method(HttpMethod.GET)
+                .path("/get")
+                .send((result) -> System.out.println(result));
+        }
     }
 
     @Test
