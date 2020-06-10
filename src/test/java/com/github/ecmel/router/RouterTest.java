@@ -45,14 +45,21 @@ public class RouterTest
     {
         router.get("/get", (req, res) -> res.getWriter().print("get"));
 
-        for (int i = 0; i < 100; i++)
+        int count = 10;
+        CountDownLatch latch = new CountDownLatch(count - 1);
+
+        for (int i = 0; i < count; i++)
         {
             client
                 .newRequest(uri)
                 .method(HttpMethod.GET)
                 .path("/get")
-                .send((result) -> System.out.println(result));
+                .send((result) -> latch.countDown());
         }
+
+        latch.await(5, TimeUnit.SECONDS);
+
+        assertEquals(0, latch.getCount());
     }
 
     @Test
