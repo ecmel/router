@@ -27,10 +27,24 @@ public class HttpRequest implements HttpServletRequest
 {
     private final HttpServletRequest delegate;
     private Map<String, String> pathParameters;
+    private boolean handled = false;
 
     public HttpRequest(HttpServletRequest delegate)
     {
         this.delegate = delegate;
+    }
+
+    void setHandled(boolean handled)
+    {
+        if (handled && !this.handled)
+        {
+            this.handled = true;
+        }
+    }
+
+    boolean isHandled()
+    {
+        return handled;
     }
 
     void setPathParameters(Map<String, String> pathParameters)

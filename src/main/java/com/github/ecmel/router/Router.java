@@ -108,6 +108,11 @@ public class Router extends HandlerCollection
         HttpServletRequest request,
         HttpServletResponse response) throws IOException, ServletException
     {
-        super.handle(target, baseRequest, new HttpRequest(request), new HttpResponse(response));
+        HttpRequest req = new HttpRequest(request);
+        HttpResponse res = new HttpResponse(response);
+
+        super.handle(target, baseRequest, req, res);
+
+        baseRequest.setHandled(req.isHandled());
     }
 }

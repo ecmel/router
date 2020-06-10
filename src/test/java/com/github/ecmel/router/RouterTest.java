@@ -150,15 +150,17 @@ public class RouterTest
     @Test
     public void shouldRespondNotFound() throws Exception
     {
-        router.get("/get", (req, res) -> res.getWriter().print("get"));
+        router.all("/get", (req, res) -> res.getWriter().print("get"));
 
         ContentResponse res = client
             .newRequest(uri)
             .method(HttpMethod.GET)
-            .path("/none")
+            .accept("application/json")
+            .path("/get")
             .send();
 
         assertEquals(404, res.getStatus());
+        assertTrue(res.getContentAsString().startsWith("{"));
     }
 
     @Test
@@ -192,6 +194,8 @@ public class RouterTest
                 .method(HttpMethod.GET)
                 .path("/get/0")
                 .send();
+
+            assertEquals(200, res.getStatus());
         }
 
         long elapsedTime = System.nanoTime() - startTime;
@@ -207,6 +211,8 @@ public class RouterTest
                 .method(HttpMethod.GET)
                 .path("/get/999")
                 .send();
+
+            assertEquals(200, res.getStatus());
         }
 
         elapsedTime = System.nanoTime() - startTime;
