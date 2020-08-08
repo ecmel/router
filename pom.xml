@@ -5,7 +5,7 @@
 
   <groupId>com.github.ecmel</groupId>
   <artifactId>router</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
 
   <name>router</name>
   <url>https://github.com/ecmel/router</url>
@@ -20,12 +20,12 @@
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-server</artifactId>
-      <version>9.4.30.v20200611</version>
+      <version>9.4.31.v20200723</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty.websocket</groupId>
       <artifactId>websocket-server</artifactId>
-      <version>9.4.30.v20200611</version>
+      <version>9.4.31.v20200723</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -36,13 +36,13 @@
     <dependency>
       <groupId>org.eclipse.jetty</groupId>
       <artifactId>jetty-client</artifactId>
-      <version>9.4.30.v20200611</version>
+      <version>9.4.31.v20200723</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.eclipse.jetty.websocket</groupId>
       <artifactId>websocket-client</artifactId>
-      <version>9.4.30.v20200611</version>
+      <version>9.4.31.v20200723</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
