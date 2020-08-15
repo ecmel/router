@@ -5,7 +5,7 @@
 
   <groupId>com.github.ecmel</groupId>
   <artifactId>router</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.1</version>
 
   <name>router</name>
   <url>https://github.com/ecmel/router</url>
