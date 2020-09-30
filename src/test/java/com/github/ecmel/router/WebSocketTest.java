@@ -19,9 +19,9 @@ import org.junit.Test;
 public class WebSocketTest
 {
     private static String uri = "ws://localhost:8080";
-    private WebSocketClient client;
-    private Server server;
     private Router router;
+    private Server server;
+    private WebSocketClient client;
 
     @Before
     public void setUp() throws Exception
@@ -30,9 +30,9 @@ public class WebSocketTest
         server = new Server(8080);
         client = new WebSocketClient();
 
-        router.socket((req, res) -> new ServerSocket());
-
         server.setHandler(router);
+
+        router.socket((req, res) -> new ServerSocket());
 
         server.start();
         client.start();
